@@ -1,7 +1,3 @@
-
-
-https://github.com/user-attachments/assets/5f5df725-8851-4046-8114-acc1cffaad3a
-
 [← 프로젝트 메인](../README.md)
 
 # ② 책장 구동부
