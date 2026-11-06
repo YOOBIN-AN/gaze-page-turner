@@ -77,7 +77,7 @@
 
 <pre>
 gaze-page-turner/
-├── <a href="page-actuator/">page-actuator/</a>                      ② 책장 구동부 (상세 README·펌웨어·3D 모델)
+├── <a href="page-actuator/">page-actuator/</a>                      ② 책장 구동부 (상세 README · 펌웨어 · 3D 모델)
 ├── <a href="archive/">archive/</a>                            초기 시선 인식 실험 (팀 공동)
 └── <a href="docs/">docs/</a>
     ├── <a href="docs/images/">images/</a>                         대표 결과 이미지
