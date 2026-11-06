@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/5f5df725-8851-4046-8114-acc1cffaad3a
+
 [← 프로젝트 메인](../README.md)
 
 # ② 책장 구동부
@@ -41,7 +45,7 @@
 
 ### 오른쪽 넘김
 
-<!-- 영상: demo_turn_right.mp4 -->
+https://github.com/user-attachments/assets/5365bad5-5374-4ebf-a066-5d2267a26b24
 
 <sub>고정 팔 해제 → 넘김 팔이 오른쪽 페이지를 넘김 → 고정 팔이 양쪽 페이지를 다시 눌러 정리</sub>
 
@@ -49,7 +53,7 @@
 
 ### 왼쪽 넘김
 
-<!-- 영상: demo_turn_left.mp4 -->
+https://github.com/user-attachments/assets/762839ab-9816-4a6e-b18e-23176ec6fc17
 
 <sub>반대쪽 트리거도 같은 순서로 동작 — 넘김 팔 좌 · 우 대칭 구동</sub>
 
@@ -57,7 +61,7 @@
 
 ### 다양한 크기의 책
 
-<!-- 영상: demo_book_sizes.mp4 -->
+https://github.com/user-attachments/assets/054ece03-62e3-4619-88f5-71064278f2d9
 
 <sub>너비가 다른 두 책에서 같은 장치로 넘김 · 고정</sub>
 
@@ -65,7 +69,7 @@
 
 ### 두께 보정
 
-<!-- 영상: demo_thickness_log.mp4 -->
+https://github.com/user-attachments/assets/83e51d89-f6bd-4b01-a9d0-90b885913aee
 
 <sub>오른쪽으로 연속 8회 넘기며 기록한 시리얼 로그 — 넘김 3회마다 상단 모터 목표 각도가 0.3°씩 바뀜 (서보 단독 테스트, 3배속)</sub>
 
