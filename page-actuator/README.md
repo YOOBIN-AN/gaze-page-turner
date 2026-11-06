@@ -91,12 +91,12 @@ https://github.com/user-attachments/assets/83e51d89-f6bd-4b01-a9d0-90b885913aee
 ```mermaid
 %%{init: {'flowchart': {'wrappingWidth': 600, 'rankSpacing': 25}}}%%
 flowchart TD
-    T["명령 수신 (Wi-Fi 소켓 8080) — PAGE_TURN_LEFT · RIGHT width=px"] --> C["두께 보정 — 좌 · 우 넘김 횟수 누적 → 상단 모터 목표 각도"]
-    C --> R["고정 해제 — RELEASE"]
-    R --> P["책장 넘김 — PAGE LEFT · RIGHT"]
-    P --> H["재고정 — HOLD"]
-    H --> L["기록 출력 — 시리얼 로그"]
-    L --> W["안전 위치 복귀 — 다음 트리거 대기"]
+    T["명령 수신 — PAGE_TURN_LEFT · RIGHT width=px"] --> C["#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;두께 보정 — 넘김 횟수 누적 → 상단 모터 각도#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;"]
+    C --> R["#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;고정 해제 — RELEASE#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;"]
+    R --> P["#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;책장 넘김 — PAGE LEFT · RIGHT#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;"]
+    P --> H["#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;재고정 — HOLD#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;"]
+    H --> L["#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;기록 출력 — 시리얼 로그#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;"]
+    L --> W["#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;안전 위치 복귀 — 다음 트리거 대기#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;#nbsp;"]
 
     classDef io fill:#57606a,stroke:#57606a,color:#fff
     classDef step fill:#f6f8fa,stroke:#d0d7de,color:#24292f
