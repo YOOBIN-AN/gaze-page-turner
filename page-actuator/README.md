@@ -18,13 +18,13 @@
 
 &nbsp;
 
-<a id="목차"></a>**목차** · [개요](#1-개요) · [데모](#2-데모) · [동작 원리](#3-동작-원리) · [기구 설계](#4-기구-설계) · [트러블슈팅](#5-트러블슈팅) · [한계 및 개선 방향](#6-한계-및-개선-방향) · [폴더 구조](#7-폴더-구조)
+<a id="목차"></a>**목차** · [개요](#1-개요) · [데모](#2-데모) · [동작 원리](#3-동작-원리) · [기구 설계](#4-기구-설계) · [트러블슈팅](#5-트러블슈팅) · [한계 및 개선 방향](#6-한계-및-개선-방향) · [실행 방법](#7-실행-방법) · [폴더 구조](#8-폴더-구조)
 
 &nbsp;
 
 ## 1. 개요
 
-한이음 드림업 프로젝트에서 ② 책장 구동부를 맡아 서보모터 제어와 3D 모델링을 담당했습니다.  
+한이음 드림업 프로젝트에서 초기 시선 인식 실험을 팀원과 함께 진행한 뒤, 파트를 나눠 ② 책장 구동부의 ESP32 펌웨어 · 서보모터 제어와 3D 모델링을 담당했습니다.  
 시선 파트가 보낸 트리거 명령 하나를 고정 해제 → 넘김 → 재고정의 물리 동작으로 바꾸고, 책 크기와 두께에 맞춰 모터 각도를 보정합니다.
 
 | | 기존 물리 독서 보조기구 | 이 장치 |
@@ -63,6 +63,14 @@
 
 &nbsp;
 
+### 두께 보정
+
+<!-- 영상: demo_thickness_log.mp4 -->
+
+<sub>오른쪽으로 연속 8회 넘기며 기록한 시리얼 로그 — 넘김 3회마다 상단 모터 목표 각도가 0.3°씩 바뀜 (서보 단독 테스트, 3배속)</sub>
+
+&nbsp;
+
 ### 결과 요약
 
 | 기능 | 결과 |
@@ -70,7 +78,7 @@
 | 자동 책장 넘김 | 좌 · 우 트리거 모두 넘김 팔이 한 장씩 넘긴 뒤 안전 위치로 복귀 |
 | 책 고정 · 정리 | 넘김 전 고정 해제, 넘김 후 양쪽 페이지를 눌러 평탄화 · 되말림 방지 |
 | 책 너비 보정 | 너비가 다른 책에서 고정 팔 하단 모터 각도를 바꿔 같은 동작 수행 |
-| 두께 보정 | 넘김 횟수가 늘수록 고정 팔 상단 모터 목표 각도가 바뀌는 것을 시리얼 로그로 확인 |
+| 두께 보정 | 넘김 횟수 차이 3회마다 상단 모터 목표 각도 0.3° 조정 (왼쪽 15.0° → 15.3° → 15.6°) |
 
 <sub>[↑ 목차](#목차)</sub>
 
@@ -82,7 +90,7 @@
 
 ```mermaid
 flowchart TD
-    T["트리거 명령 수신<br/>Raspberry Pi → ESP32 (Wi-Fi 소켓)"] --> C["두께 보정<br/>좌 · 우 넘김 횟수 누적<br/>→ 상단 모터 목표 각도"]
+    T["명령 수신 (Wi-Fi 소켓 8080)<br/>PAGE_TURN_LEFT · RIGHT width=px"] --> C["두께 보정<br/>좌 · 우 넘김 횟수 누적<br/>→ 상단 모터 목표 각도"]
     C --> R["고정 해제<br/>RELEASE"]
     R --> P["책장 넘김<br/>PAGE LEFT · RIGHT"]
     P --> H["재고정<br/>HOLD"]
@@ -95,7 +103,8 @@ flowchart TD
     class C,R,P,H,L step
 ```
 
-넘기기 전에 고정을 먼저 풀어, 고정 팔이 넘어가는 페이지를 붙잡지 않도록 순서를 정했습니다.
+넘기기 전에 고정을 먼저 풀어, 고정 팔이 넘어가는 페이지를 붙잡지 않도록 순서를 정했습니다.  
+동작 중에 들어온 명령은 처리하지 않도록 `isMoving` 상태로 막았습니다.
 
 <details>
 <summary><b>하드웨어 구성</b></summary>
@@ -141,8 +150,8 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    A["캘리브레이션<br/>책 좌 · 우 하단 응시"] --> B["책 너비<br/>px → cm 환산"] --> C["선형 보간<br/>미리 측정한 두 책 기준"] --> D["고정 팔<br/>하단 모터 각도"]
-    E["트리거 방향<br/>LEFT · RIGHT"] --> F["좌 · 우 넘김 횟수<br/>각각 누적"] --> G["두께 변화 반영"] --> H["고정 팔<br/>상단 모터 각도"]
+    A["캘리브레이션<br/>책 좌 · 우 하단 응시"] --> B["책 너비<br/>px → cm 환산"] --> C["선형 보간<br/>39 cm · 44 cm 기준"] --> D["고정 팔<br/>하단 모터 각도"]
+    E["트리거 방향<br/>LEFT · RIGHT"] --> F["좌 · 우 넘김 횟수<br/>각각 누적"] --> G["횟수 차이<br/>3회마다 0.3°"] --> H["고정 팔<br/>상단 모터 각도"]
 
     classDef ask fill:#f6f8fa,stroke:#57606a,color:#24292f
     classDef out fill:#fff8c5,stroke:#d4a72c,color:#4d2d00
@@ -150,20 +159,28 @@ flowchart LR
     class D,H out
 ```
 
-책이 넓을수록 고정 팔이 더 바깥쪽을 누르고, 한쪽으로 넘길수록 두꺼워지는 쪽과 얇아지는 쪽에 맞춰 누르는 각도를 조금씩 바꿉니다.
+책 너비에 따라 고정 팔이 내려오는 각도를 정하고, 한쪽으로 넘길수록 두꺼워지는 쪽과 얇아지는 쪽에 맞춰 누르는 각도를 조금씩 바꿉니다.
 
 <details>
-<summary><b>시리얼 로그로 본 두께 보정</b></summary>
+<summary><b>보정식 · 시리얼 로그</b></summary>
 <br>
+
+| 항목 | 식 · 값 |
+|---|---|
+| px → cm | `cm = 39 + (px − 27) × 5 / 9` |
+| 하단 모터 (L1 · R1) | 책 너비 39 cm ~ 44 cm 사이 선형 보간 — 왼쪽 60° → 90°, 오른쪽 120° → 90° |
+| 상단 모터 (L2 · R2) | (넘긴 쪽 횟수 − 반대쪽 횟수) ÷ 3의 정수 부분 × 0.3°만큼 기준값에서 조정 |
+| 상단 모터 기준값 | 통합본 [`servo_final.ino`](firmware/servo_final/servo_final.ino) 8° · 168° / 데모 로그의 서보 단독 테스트본 15° · 165° |
 
 <img src="docs/images/serial_log.png" width="55%">
 
 | 오른쪽 넘김 횟수 | 왼쪽 상단 모터 (`targetL2`) | 오른쪽 상단 모터 (`targetR2`) |
 |:-:|:-:|:-:|
-| 2회 | 15.0 | 165.0 |
-| 3회 | 15.3 | 164.7 |
+| 1 ~ 2회 | 15.0° | 165.0° |
+| 3 ~ 5회 | 15.3° | 164.7° |
+| 6 ~ 8회 | 15.6° | 164.4° |
 
-오른쪽으로 넘길수록 왼쪽 페이지는 두꺼워지고 오른쪽 페이지는 얇아져, 두 상단 모터의 목표 각도가 반대 방향으로 조금씩 바뀝니다.
+오른쪽으로 넘길수록 왼쪽 페이지는 두꺼워지고 오른쪽 페이지는 얇아져, 두 상단 모터의 목표 각도가 반대 방향으로 바뀝니다.
 
 </details>
 
@@ -196,7 +213,7 @@ flowchart LR
 - 서보모터 · 카메라 장착용 거치대를 Tinkercad로 설계하고 3D 프린팅
 - 프린팅 후 실제 독서대에 부착해 각도 · 위치를 맞추며 반복 수정
 - 넘김 팔 끝에는 고무 마개를 씌워 종이와의 마찰 확보
-- 서보 케이스 모델 → [`models/`](models/) (GitHub에서 STL 파일을 열면 3D로 볼 수 있습니다)
+- 서보 케이스 · 카메라 케이스 모델 → [`models/`](models/) (GitHub에서 STL 파일을 열면 3D로 볼 수 있습니다)
 
 <sub>[↑ 목차](#목차)</sub>
 
@@ -244,15 +261,52 @@ flowchart LR
 
 &nbsp;
 
-## 7. 폴더 구조
+## 7. 실행 방법
+
+1. Arduino IDE에 ESP32 보드 패키지와 `ESP32Servo` 라이브러리 설치
+2. [`firmware/servo_final/servo_final.ino`](firmware/servo_final/servo_final.ino)를 열고 `YOUR_SSID` · `YOUR_PASSWORD`를 라즈베리파이와 같은 Wi-Fi로 수정
+3. 보드를 **LOLIN D32**로 선택해 업로드한 뒤, 시리얼 모니터(115200 baud)에서 ESP32 IP 확인
+4. 같은 네트워크에서 8080 포트로 명령 전송
+
+```bash
+echo "PAGE_TURN_RIGHT width=30" | nc <ESP32_IP> 8080   # 책 너비 30px로 오른쪽 넘김
+```
+
+<details>
+<summary><b>명령 · 핀 배치</b></summary>
+<br>
+
+| 명령 | 응답 | 동작 |
+|---|---|---|
+| `PAGE_TURN_LEFT width=<px>` · `PAGE_TURN_RIGHT width=<px>` | `LEFT_ACTION_ACCEPTED` · `RIGHT_ACTION_ACCEPTED` | 책 너비 갱신 후 해당 방향으로 넘김 |
+| `LEFT` · `RIGHT` | 위와 같음 | 마지막 책 너비로 넘김 |
+| `RESET` | `RESET_ACCEPTED` | 모든 서보 초기 위치 |
+
+| 서보 | 핀 |
+|---|---|
+| 왼쪽 고정 팔 하단 · 상단 (MG946R) | 16 · 17 |
+| 오른쪽 고정 팔 하단 · 상단 (MG946R) | 21 · 22 |
+| 넘김 팔 1 · 2 (MG90S) | 25 · 23 |
+
+</details>
+
+<sub>[↑ 목차](#목차)</sub>
+
+&nbsp;
+
+## 8. 폴더 구조
 
 <pre>
 page-actuator/
 ├── <a href="README.md">README.md</a>
+├── <a href="firmware/servo_final/">firmware/servo_final/</a>
+│   └── <a href="firmware/servo_final/servo_final.ino">servo_final.ino</a>                   ESP32 최종 펌웨어
 ├── <a href="models/">models/</a>
 │   ├── <a href="models/servo_case_left.stl">servo_case_left.stl</a>               왼쪽 고정 팔 서보 케이스
 │   ├── <a href="models/servo_case_right.stl">servo_case_right.stl</a>              오른쪽 고정 팔 서보 케이스
-│   └── <a href="models/servo_case_pair.stl">servo_case_pair.stl</a>               왼쪽 + 오른쪽 한 파일
+│   ├── <a href="models/servo_case_pair.stl">servo_case_pair.stl</a>               왼쪽 + 오른쪽 출력용 합본
+│   └── <a href="models/camera_case.stl">camera_case.stl</a>                   카메라 케이스
+├── <a href="archive/">archive/</a>                              테스트 펌웨어 · 이전 모델
 └── <a href="docs/images/">docs/images/</a>                          README 이미지
 </pre>
 

@@ -28,10 +28,12 @@
 
 신체적 제약으로 책장을 넘기기 어려운 사람을 위해, 손 대신 시선만으로 종이책을 넘길 수 있는 장치를 만들었습니다.  
 기존 물리 독서 보조기구는 리모컨으로 조작하는 방식이라, 손을 쓰기 어려운 사용자는 여전히 사용할 수 없었습니다.  
-팀 프로젝트명은 Eye Am Reader이며, 전시형 멘토님의 자문을 받아 시스템을 두 파트로 나눠 진행했습니다.
+팀 프로젝트명은 Eye Am Reader이며, 전시형 멘토님의 자문을 받아 진행했습니다.  
+초기 시선 인식 실험은 팀원이 함께 진행했고, 이후 시스템을 두 파트로 나눠 개발했습니다.
 
 결과보고서 → [`eye-am-reader-report.pdf`](docs/report/eye-am-reader-report.pdf)  
-작동 영상 → [YouTube](https://www.youtube.com/watch?v=Gnrcc8VltUA)
+작동 영상 → [YouTube](https://www.youtube.com/watch?v=Gnrcc8VltUA)  
+초기 시선 인식 실험 → [`archive/`](archive/)
 
 <sub>[↑ 목차](#목차)</sub>
 
@@ -47,7 +49,7 @@
 | **판단 · 동작** | 트리거 영역에 일정 시간 머무르면 트리거 발생 | 고정 해제 → 책장 넘김 → 재고정 |
 | **출력** | 넘김 방향 명령 · LED 상태 표시 | 책장 넘김 · 페이지 평탄화 |
 
-② 책장 구동부의 데모 · 동작 원리 · 3D 모델 · 개발 과정은 [`page-actuator/`](page-actuator/)에서 볼 수 있습니다.
+② 책장 구동부의 데모 · 동작 원리 · 펌웨어 · 3D 모델 · 개발 과정은 [`page-actuator/`](page-actuator/)에서 볼 수 있습니다.
 
 <sub>[↑ 목차](#목차)</sub>
 
@@ -75,7 +77,8 @@
 
 <pre>
 gaze-page-turner/
-├── <a href="page-actuator/">page-actuator/</a>                      ② 책장 구동부 (상세 README · 3D 모델)
+├── <a href="page-actuator/">page-actuator/</a>                      ② 책장 구동부 (상세 README · 펌웨어 · 3D 모델)
+├── <a href="archive/">archive/</a>                            초기 시선 인식 실험 (팀 공동)
 └── <a href="docs/">docs/</a>
     ├── <a href="docs/images/">images/</a>                         대표 결과 이미지
     └── <a href="docs/report/eye-am-reader-report.pdf">report/</a>                         결과보고서 (PDF)
