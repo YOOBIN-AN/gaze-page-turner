@@ -16,7 +16,7 @@
 <img src="docs/images/hardware_overview.jpg" width="49%">
 <img src="docs/images/page_turning_side.png" width="49%">
 </p>
-<sub>왼쪽: 독서대 뒷면 하드웨어 구성 — 카메라·Raspberry Pi·ESP32·DC-DC 컨버터·LED / 오른쪽: 시선 트리거 후 넘김 팔이 책장을 넘기는 모습</sub>
+<sub>왼쪽: 독서대 뒷면 하드웨어 구성 — 카메라·Raspberry Pi · ESP32 · DC-DC 컨버터 · LED / 오른쪽: 시선 트리거 후 넘김 팔이 책장을 넘기는 모습</sub>
 
 &nbsp;
 
