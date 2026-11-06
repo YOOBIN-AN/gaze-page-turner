@@ -16,7 +16,7 @@
 <img src="docs/images/hardware_overview.jpg" width="49%">
 <img src="docs/images/page_turning_side.png" width="49%">
 </p>
-<sub>왼쪽: 독서대 뒷면 하드웨어 구성 — 카메라·Raspberry Pi · ESP32 · DC-DC 컨버터 · LED / 오른쪽: 시선 트리거 후 넘김 팔이 책장을 넘기는 모습</sub>
+<sub>왼쪽: 독서대 뒷면 하드웨어 구성 — 카메라 · Raspberry Pi · ESP32 · DC-DC 컨버터 · LED / 오른쪽: 시선 트리거 후 넘김 팔이 책장을 넘기는 모습</sub>
 
 &nbsp;
 
@@ -41,7 +41,7 @@
 
 ## 2. 시스템 구성
 
-| ① 시선 인식·트리거<br>조윤서 | ② [책장 구동부](page-actuator/)<br>**안유빈** (3D 모델링·서보모터 제어)<br>박경리 (모터 제어·전력 공급부)  |
+| | ① 시선 인식·트리거<br>조윤서 | ② [책장 구동부](page-actuator/)<br>**안유빈** (3D 모델링·서보모터 제어)<br>박경리 (모터 제어·전력 공급부) |
 |---|---|---|
 | **하드웨어** | Raspberry Pi 4 · NoIR 카메라 · LED | ESP32 · MG90S × 2 · MG946R × 4 · DC-DC 컨버터 |
 | **입력** | 사용자 얼굴 영상 | Wi-Fi 소켓으로 받은 넘김 방향 명령 |
