@@ -115,14 +115,14 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    PW["12V 어댑터<br/>+ 전원 스위치"] --> DC1["DC-DC 컨버터<br/>5V"]
-    PW --> DC2["DC-DC 컨버터<br/>6V"]
-    DC1 --> RPI["Raspberry Pi<br/>시선 추적 · 트리거"]
-    DC1 --> ESP["ESP32 (LOLIN D32)<br/>PWM 생성"]
+    PW["<div style='width:150px;height:48px;display:flex;flex-direction:column;justify-content:center'>12V 어댑터<br/>+ 전원 스위치</div>"] --> DC1["<div style='width:150px;height:48px;display:flex;flex-direction:column;justify-content:center'>DC-DC 컨버터<br/>5V</div>"]
+    PW --> DC2["<div style='width:150px;height:48px;display:flex;flex-direction:column;justify-content:center'>DC-DC 컨버터<br/>6V</div>"]
+    DC1 --> RPI["<div style='width:150px;height:48px;display:flex;flex-direction:column;justify-content:center'>Raspberry Pi<br/>시선 추적 · 트리거</div>"]
+    DC1 --> ESP["<div style='width:150px;height:48px;display:flex;flex-direction:column;justify-content:center'>ESP32 (LOLIN D32)<br/>PWM 생성</div>"]
     RPI <-- Wi-Fi --> ESP
-    ESP -- PWM --> S1["MG90S × 2<br/>넘김 팔"]
-    ESP -- PWM --> S2["MG946R × 2<br/>왼쪽 고정 팔"]
-    ESP -- PWM --> S3["MG946R × 2<br/>오른쪽 고정 팔"]
+    ESP -- PWM --> S1["<div style='width:150px;height:48px;display:flex;flex-direction:column;justify-content:center'>MG90S × 2<br/>넘김 팔</div>"]
+    ESP -- PWM --> S2["<div style='width:150px;height:48px;display:flex;flex-direction:column;justify-content:center'>MG946R × 2<br/>왼쪽 고정 팔</div>"]
+    ESP -- PWM --> S3["<div style='width:150px;height:48px;display:flex;flex-direction:column;justify-content:center'>MG946R × 2<br/>오른쪽 고정 팔</div>"]
     DC2 --> S1
     DC2 --> S2
     DC2 --> S3
@@ -153,8 +153,8 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    A["캘리브레이션<br/>책 좌 · 우 하단 응시"] --> B["책 너비<br/>px → cm 환산"] --> C["선형 보간<br/>39 cm · 44 cm 기준"] --> D["고정 팔<br/>하단 모터 각도"]
-    E["트리거 방향<br/>LEFT · RIGHT"] --> F["좌 · 우 넘김 횟수<br/>각각 누적"] --> G["횟수 차이<br/>3회마다 0.3°"] --> H["고정 팔<br/>상단 모터 각도"]
+    A["<div style='width:141px;height:48px;display:flex;flex-direction:column;justify-content:center'>캘리브레이션<br/>책 좌 · 우 하단 응시</div>"] --> B["<div style='width:141px;height:48px;display:flex;flex-direction:column;justify-content:center'>책 너비<br/>px → cm 환산</div>"] --> C["<div style='width:141px;height:48px;display:flex;flex-direction:column;justify-content:center'>선형 보간<br/>39 cm · 44 cm 기준</div>"] --> D["<div style='width:141px;height:48px;display:flex;flex-direction:column;justify-content:center'>고정 팔<br/>하단 모터 각도</div>"]
+    E["<div style='width:141px;height:48px;display:flex;flex-direction:column;justify-content:center'>트리거 방향<br/>LEFT · RIGHT</div>"] --> F["<div style='width:141px;height:48px;display:flex;flex-direction:column;justify-content:center'>좌 · 우 넘김 횟수<br/>각각 누적</div>"] --> G["<div style='width:141px;height:48px;display:flex;flex-direction:column;justify-content:center'>횟수 차이<br/>3회마다 0.3°</div>"] --> H["<div style='width:141px;height:48px;display:flex;flex-direction:column;justify-content:center'>고정 팔<br/>상단 모터 각도</div>"]
 
     classDef ask fill:#f6f8fa,stroke:#57606a,color:#24292f
     classDef out fill:#fff8c5,stroke:#d4a72c,color:#4d2d00
@@ -284,7 +284,7 @@ echo "PAGE_TURN_RIGHT width=30" | nc <ESP32_IP> 8080   # 책 너비 30px로 오�
 
 | 명령 | 응답 | 동작 |
 |---|---|---|
-| `PAGE_TURN_LEFT width=<px>` · `PAGE_TURN_RIGHT width=<px>` | `LEFT_ACTION_ACCEPTED` · `RIGHT_ACTION_ACCEPTED` | 책 너비 갱신 후 해당 방향으로 넘김 |
+| `PAGE_TURN_LEFT width=<px>` ·<br>`PAGE_TURN_RIGHT width=<px>` | `LEFT_ACTION_ACCEPTED` ·<br>`RIGHT_ACTION_ACCEPTED` | 책 너비 갱신 후<br>해당 방향으로 넘김 |
 | `LEFT` · `RIGHT` | 위와 같음 | 마지막 책 너비로 넘김 |
 | `RESET` | `RESET_ACCEPTED` | 모든 서보 초기 위치 |
 
